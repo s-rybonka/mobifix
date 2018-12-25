@@ -1,4 +1,4 @@
-Django==2.0
+Django==1.11.7
 djangorestframework==3.9.0
 drf-yasg==1.11.0
 django-environ==0.4.1
