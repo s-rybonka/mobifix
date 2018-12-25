@@ -9,6 +9,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from users.models import User
 from users.models import EmailConfirmation
+from users.models import Profile
 from users.forms import UserChangeForm
 from users.forms import UserCreationForm
 
@@ -51,3 +52,8 @@ class AdminEmailConfirmation(admin.ModelAdmin):
     def has_add_permission(self, request):
         return False
 
+
+@admin.register(Profile)
+class AdminProfile(admin.ModelAdmin):
+    list_display = ('user','first_name', 'last_name', 'phone')
+    search_fields = ('first_name', 'last_name',)

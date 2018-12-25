@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include([
         url(r'^auth/', include("auth.urls", namespace='auth')),
+        url(r'^users/', include("users.urls", namespace='users')),
         url(r'^docs/$', schema_view.with_ui('swagger', cache_timeout=0), name='docs'),
     ],
         namespace='api',

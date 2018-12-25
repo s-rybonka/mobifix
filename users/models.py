@@ -4,6 +4,7 @@ from django.contrib.auth.models import PermissionsMixin
 from model_utils import Choices
 from django.utils.translation import gettext_lazy as _
 from users.managers import UserManager
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -70,3 +71,17 @@ class EmailConfirmation(models.Model):
     def confirm_email(self):
         self.confirmed = True
         self.save(update_fields=['confirmed',])
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, verbose_name=_('user'))
+    first_name = models.CharField(max_length=50, verbose_name=_('first name'))
+    last_name = models.CharField(max_length=50, verbose_name=_('last name'))
+    address = models.TextField(verbose_name=_('address'))
+    phone = PhoneNumberField(null=True)
+    facebook = models.CharField(max_length=200, verbose_name=_('facebook'))
+    twitter = models.CharField(max_length=200, verbose_name=_('twitter'))
+
+    class Meta:
+        verbose_name = _('profile')
+        verbose_name_plural = _('profiles')

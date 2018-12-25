@@ -8,3 +8,5 @@ pytz==2016.10
 django-filter==2.0.0
 coreapi==2.3.3
 coreschema==0.0.4
+django-phonenumber-field==2.1.0
+phonenumbers==8.10.2

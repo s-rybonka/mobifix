@@ -9,6 +9,7 @@ from users.models import EmailConfirmation
 from users.models import User
 from django.core.mail import send_mail
 from django.conf import settings
+from users.models import Profile
 
 
 class SignUpSerializer(serializers.Serializer):
@@ -87,6 +88,7 @@ class SignInSerializer(serializers.Serializer):
                     _('E-mail is not verified.'),
                 )
             Token.objects.get_or_create(user=user)
+            Profile.objects.get_or_create(user=user)
         else:
             raise ValidationError(_('Unable to log in with provided credentials.'))
         return attrs
