@@ -1,14 +1,16 @@
-from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
-from model_utils import Choices
+from django.db import models
 from django.utils.translation import gettext_lazy as _
-from users.managers import UserManager
+from model_utils import Choices
 from phonenumber_field.modelfields import PhoneNumberField
+from twilio.rest import Client
+
+from users.managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-
     TYPES = Choices(
         ('manager', 'MANAGER', _('Manager')),
         ('repairer', 'REPAIRER', _('Repairer')),
@@ -41,11 +43,19 @@ class User(AbstractBaseUser, PermissionsMixin):
         raise NotImplementedError()
 
     def get_short_name(self):
-        return ''
+        return self.email
 
-    @property
-    def is_parent(self):
-        return self.type == self.TYPES.PARENT
+    @staticmethod
+    def send_sms(body, sms_to):
+        client = Client(
+            settings.TWILIO_ACCOUNT_SID,
+            settings.TWILIO_AUTH_TOKEN,
+        )
+        client.messages.create(
+            to=str(sms_to),
+            from_=settings.TWILIO_TEST_PHONE_NUMBER,
+            body=body,
+        )
 
 
 class EmailConfirmation(models.Model):
@@ -70,7 +80,7 @@ class EmailConfirmation(models.Model):
 
     def confirm_email(self):
         self.confirmed = True
-        self.save(update_fields=['confirmed',])
+        self.save(update_fields=['confirmed', ])
 
 
 class Profile(models.Model):

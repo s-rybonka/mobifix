@@ -1,0 +1,93 @@
+[
+{
+  "model": "services.service",
+  "pk": 1,
+  "fields": {
+    "created": "2018-12-25T14:46:28.474Z",
+    "modified": "2018-12-25T14:46:28.484Z",
+    "name": "Repair IOS devices",
+    "description": "In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced.",
+    "price": "1000.00",
+    "currency": "usd",
+    "is_available": true
+  }
+},
+{
+  "model": "services.service",
+  "pk": 2,
+  "fields": {
+    "created": "2018-12-25T14:46:53.621Z",
+    "modified": "2018-12-25T14:46:53.623Z",
+    "name": "Repair Android devices",
+    "description": "In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced.",
+    "price": "500.00",
+    "currency": "usd",
+    "is_available": true
+  }
+},
+{
+  "model": "services.service",
+  "pk": 3,
+  "fields": {
+    "created": "2018-12-25T14:47:14.112Z",
+    "modified": "2018-12-25T14:47:14.114Z",
+    "name": "Repair Laptop",
+    "description": "In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced.",
+    "price": "200.00",
+    "currency": "eur",
+    "is_available": true
+  }
+},
+{
+  "model": "services.service",
+  "pk": 4,
+  "fields": {
+    "created": "2018-12-25T14:47:29.912Z",
+    "modified": "2018-12-25T14:47:29.915Z",
+    "name": "Repair Assus",
+    "description": "In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced.",
+    "price": "256.00",
+    "currency": "usd",
+    "is_available": true
+  }
+},
+{
+  "model": "services.service",
+  "pk": 5,
+  "fields": {
+    "created": "2018-12-25T14:47:47.158Z",
+    "modified": "2018-12-25T14:47:47.160Z",
+    "name": "Repair MacBook",
+    "description": "In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced.",
+    "price": "2000.00",
+    "currency": "usd",
+    "is_available": true
+  }
+},
+{
+  "model": "services.service",
+  "pk": 6,
+  "fields": {
+    "created": "2018-12-25T14:48:16.298Z",
+    "modified": "2018-12-25T14:48:16.302Z",
+    "name": "Repair Nokia devices",
+    "description": "In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced.",
+    "price": "1234.00",
+    "currency": "eur",
+    "is_available": true
+  }
+},
+{
+  "model": "services.service",
+  "pk": 7,
+  "fields": {
+    "created": "2018-12-25T14:48:57.992Z",
+    "modified": "2018-12-25T14:48:57.995Z",
+    "name": "Change screen [Laptop]",
+    "description": "In publishing and graphic design, lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document without relying on meaningful content. Replacing the actual content with placeholder text allows designers to design the form of the content before the content itself has been produced.",
+    "price": "123.00",
+    "currency": "uah",
+    "is_available": true
+  }
+}
+]

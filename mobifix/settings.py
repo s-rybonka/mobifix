@@ -26,11 +26,14 @@ env = environ.Env(
     DJANGO_EMAIL_BACKEND=(str, 'django.core.mail.backends.smtp.EmailBackend'),
     DJANGO_EMAIL_HOST=(str, ''),
     DJANGO_MAIL_USE_TLS=(bool, True),
-    DJANGO_EMAIL_PORT=(str,''),
-    DJANGO_DEFAULT_FROM_EMAIL=(str,''),
-    DJANGO_EMAIL_HOST_USER=(str,''),
-    DJANGO_EMAIL_HOST_PASSWORD=(str,''),
-    DJANGO_EMAIL_SUBJECT_PREFIX=(str, '[MOBIFIX] ')
+    DJANGO_EMAIL_PORT=(str, ''),
+    DJANGO_DEFAULT_FROM_EMAIL=(str, ''),
+    DJANGO_EMAIL_HOST_USER=(str, ''),
+    DJANGO_EMAIL_HOST_PASSWORD=(str, ''),
+    DJANGO_EMAIL_SUBJECT_PREFIX=(str, '[MOBIFIX] '),
+    TWILIO_ACCOUNT_SID=(str, ''),
+    TWILIO_AUTH_TOKEN=(str, ''),
+    TWILIO_TEST_PHONE_NUMBER=(str, ''),
 )
 
 environ.Env.read_env()
@@ -193,3 +196,8 @@ CURRENCIES = Choices(
     (RUB, 'RUB', '₽'),
 )
 
+# TWILIO SETTINGS BLOCK.
+
+TWILIO_ACCOUNT_SID = env('TWILIO_ACCOUNT_SID')
+TWILIO_AUTH_TOKEN = env('TWILIO_AUTH_TOKEN')
+TWILIO_TEST_PHONE_NUMBER = env('TWILIO_TEST_PHONE_NUMBER')
