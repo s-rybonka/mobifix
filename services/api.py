@@ -1,20 +1,26 @@
 from django.utils.crypto import get_random_string
+from django.utils.decorators import method_decorator
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-
+from rest_framework.generics import RetrieveAPIView
+from django.shortcuts import get_object_or_404
 from services.models import Order
 from services.models import Service
 from services.serializers import OrderModelSerializer
 from services.serializers import ServiceModelSerializer
 from services.serializers import OrderConfirmModelSerializer
+from rest_framework.permissions import AllowAny
 
 
 class ServiceListAPIView(ListAPIView):
     serializer_class = ServiceModelSerializer
     queryset = Service.objects.all()
+    permission_classes = (AllowAny,)
 
 
 class OrderModelViewSet(ModelViewSet):
@@ -57,3 +63,26 @@ class OrderModelViewSet(ModelViewSet):
                 sms_to=order.customer_phone,
             )
         return Response(OrderModelSerializer(instance=order).data)
+
+
+@method_decorator(name='get', decorator=swagger_auto_schema(
+    manual_parameters=[
+        openapi.Parameter(
+            'order_number', openapi.IN_QUERY,
+            description="Check order status.",
+            type=openapi.TYPE_STRING,
+        )
+    ]
+))
+class OrderPublicDetailAPIView(RetrieveAPIView):
+    serializer_class = OrderModelSerializer
+    queryset = Order.objects.exclude(
+        status=Order.STATUSES.UNCONFIRMED
+    )
+    permission_classes = (AllowAny,)
+
+    def get_object(self):
+        return get_object_or_404(
+            self.get_queryset(),
+            number=self.request.query_params.get('order_number')
+        )

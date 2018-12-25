@@ -10,6 +10,9 @@ router.register(
     base_name='orders',
 )
 urlpatterns = [
-    url(r'^services/', api_views.ServiceListAPIView.as_view(), name='services'),
+    url(r'^services/',
+        api_views.ServiceListAPIView.as_view(), name='services'),
+    url(r'^orders/order-public-detail/',
+        api_views.OrderPublicDetailAPIView.as_view(), name='order_public_detail'),
     url(r'^', include(router.urls)),
 ]

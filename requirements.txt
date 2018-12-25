@@ -11,3 +11,4 @@ coreschema==0.0.4
 django-phonenumber-field==2.1.0
 phonenumbers==8.10.2
 twilio==6.22.0
+factory-boy==2.8.1

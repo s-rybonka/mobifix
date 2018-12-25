@@ -17,7 +17,7 @@ class AdminOrder(admin.ModelAdmin):
     )
 
     fieldsets = (
-        (_('Order details'), {'fields': ('number', 'service', 'user', 'notes')}),
+        (_('Order details'), {'fields': ('number', 'status', 'service', 'user', 'notes')}),
         (
             _('Customer details'), {'fields': (
                 'customer_first_name', 'customer_last_name', 'customer_phone',
