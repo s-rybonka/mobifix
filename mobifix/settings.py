@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import environ
+from model_utils import Choices
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -68,6 +69,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'users',
+    'services',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -177,5 +179,17 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
-
 }
+
+USD = 'usd'
+EUR = 'eur'
+UAH = 'uah'
+RUB = 'rub'
+
+CURRENCIES = Choices(
+    (USD, 'USD', '$'),
+    (EUR, 'EUR', '€'),
+    (UAH, 'UAH', '₴'),
+    (RUB, 'RUB', '₽'),
+)
+
