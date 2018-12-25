@@ -18,6 +18,7 @@ class Service(TimeStampedModel):
         max_digits=9,
         verbose_name=_('price'),
         decimal_places=2,
+        default=0,
     )
     currency = models.CharField(
         max_length=10,
@@ -86,7 +87,7 @@ class Order(TimeStampedModel):
         max_length=100,
         verbose_name=_('customer last name'),
     )
-    customer_phone = PhoneNumberField()
+    customer_phone = PhoneNumberField(unique=True)
     phone_verification_code = models.CharField(
         max_length=5,
         verbose_name=_('phone verification code'),
