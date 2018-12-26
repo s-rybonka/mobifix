@@ -1,8 +1,14 @@
 import factory
+from faker import Faker
+from django.utils.crypto import get_random_string
 from factory.django import DjangoModelFactory
 
 from users.models import Profile
 from users.models import User
+from users.models import EmailConfirmation
+
+
+faker = Faker()
 
 
 class UserFactory(DjangoModelFactory):
@@ -10,16 +16,26 @@ class UserFactory(DjangoModelFactory):
         model = User
         django_get_or_create = ('email',)
 
-    email = factory.LazyAttribute(lambda o: '%s@example.org' % o.name)
+    email = faker.email()
     type = factory.Iterator([User.TYPES, ])
+
+
+class EmailConfirmationFactory(DjangoModelFactory):
+
+    class Meta:
+        model = EmailConfirmation
+
+    user = factory.SubFactory(UserFactory)
+    email = faker.email()
+    key = get_random_string(5).upper()
 
 
 class ProfileFactory(DjangoModelFactory):
     class Meta:
         model = Profile
     user = factory.SubFactory(UserFactory)
-    first_name = factory.LazyAttribute(lambda o: 'first_name_%s' % o.name)
-    last_name = factory.LazyAttribute(lambda o: 'last_name_%s' % o.name)
-    address = factory.LazyAttribute(lambda o: 'address%s' % o.name)
-    facebook = factory.LazyAttribute(lambda o: 'facebook_%s' % o.name)
-    twitter = factory.LazyAttribute(lambda o: 'twitter_%s' % o.name)
+    first_name = faker.name()
+    last_name = faker.name()
+    address = faker.name()
+    facebook = faker.name()
+    twitter = faker.name()

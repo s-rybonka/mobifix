@@ -83,12 +83,14 @@ class SignInSerializer(serializers.Serializer):
         password = attrs.get('password')
         user = authenticate(email=email, password=password)
         if user:
-            if not user.email_confirmations.last().confirmed:
+            email_confirmation = user.email_confirmations.last()
+            if email_confirmation and email_confirmation.confirmed:
+                Token.objects.get_or_create(user=user)
+                Profile.objects.get_or_create(user=user)
+            else:
                 raise PermissionDenied(
                     _('E-mail is not verified.'),
                 )
-            Token.objects.get_or_create(user=user)
-            Profile.objects.get_or_create(user=user)
         else:
             raise ValidationError(_('Unable to log in with provided credentials.'))
         return attrs

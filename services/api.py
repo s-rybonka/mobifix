@@ -3,7 +3,7 @@ from django.utils.decorators import method_decorator
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import action
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
@@ -19,13 +19,13 @@ from rest_framework.permissions import AllowAny
 
 class ServiceListAPIView(ListAPIView):
     serializer_class = ServiceModelSerializer
-    queryset = Service.objects.all()
+    queryset = Service.objects.order_by('-id')
     permission_classes = (AllowAny,)
 
 
 class OrderModelViewSet(ModelViewSet):
     serializer_class = OrderModelSerializer
-    queryset = Order.objects.all()
+    queryset = Order.objects.order_by('-id')
     permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):

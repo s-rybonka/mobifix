@@ -14,6 +14,7 @@ class UserManager(BaseUserManager):
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+        Token.objects.create(user=user)
         return user
 
     def create_user(self, email, password=None, **extra_fields):
@@ -21,7 +22,6 @@ class UserManager(BaseUserManager):
 
         extra_fields.setdefault('is_superuser', False)
         user = self._create_user(email, password, **extra_fields)
-        Token.objects.create(user=user)
         EmailConfirmation.objects.create(
             user=user,
             email=user.email,

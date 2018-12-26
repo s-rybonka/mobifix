@@ -35,8 +35,8 @@ class OrderModelSerializer(serializers.ModelSerializer):
     def get_ordered_service(order):
         return ServiceModelSerializer(order.service).data
 
-    def save(self, **kwargs):
-        order = super().save(**kwargs)
+    def create(self, validated_data):
+        order = Order.objects.create(**validated_data)
         verification_code = get_random_string(5).upper()
         order.user.send_sms(
             body='Verification code: {}'.format(verification_code),

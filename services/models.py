@@ -44,6 +44,7 @@ class Order(TimeStampedModel):
     STATUSES = Choices(
         ('unconfirmed', 'UNCONFIRMED', _('Unconfirmed')),
         ('pending', 'PENDING', _('Pending')),
+        ('rejected', 'REJECTED', _('Rejected')),
         ('completed', 'COMPLETED', _('Completed')),
         ('returned', 'RETURNED', _('Returned')),
     )
