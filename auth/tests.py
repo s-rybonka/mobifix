@@ -70,7 +70,7 @@ class AuthAPITestCase(APITestCase):
         self.assertEqual(response.status_code, 403)
         self.assertEqual(
             data['detail'],
-            'E-mail is not verified.'
+            'E-mail was not verified.'
         )
 
         email_confirmation.confirmed = True

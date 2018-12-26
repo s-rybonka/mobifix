@@ -88,7 +88,7 @@ class Order(TimeStampedModel):
         max_length=100,
         verbose_name=_('customer last name'),
     )
-    customer_phone = PhoneNumberField(unique=True)
+    customer_phone = PhoneNumberField()
     phone_verification_code = models.CharField(
         max_length=5,
         verbose_name=_('phone verification code'),

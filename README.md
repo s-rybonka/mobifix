@@ -12,7 +12,8 @@
 5. Activate it: source .venv/bin/activate
 6. Install project dependencies: pip install -r requirements.txt
 7. Configure you interpreter in IDE (optional)
-8. Run application: ./manage.py runserver 127.0.0.1:8000
+8. Load fixtures: ./manage.py loaddata services
+9. Run application: ./manage.py runserver 127.0.0.1:8000
 #### Related dependencies ####
 1. Add Twilio data to .env:
 - TWILIO_ACCOUNT_SID
