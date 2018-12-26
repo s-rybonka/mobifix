@@ -1,6 +1,7 @@
 from django.utils.decorators import method_decorator
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.debug import sensitive_post_parameters
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.generics import GenericAPIView
@@ -9,7 +10,6 @@ from rest_framework.permissions import IsAdminUser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from drf_yasg.utils import swagger_auto_schema
 
 from auth.serializers import EmailVerifySerializer
 from auth.serializers import PasswordChangeSerializer
@@ -41,7 +41,7 @@ class SignUpAPIView(CreateAPIView):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         data_to_response = {
-            'detail': _('Confirmation email successfuly sent.')
+            'detail': _('Confirmation email successfully sent.')
         }
         data_to_response.update(serializer.data)
         return Response(
@@ -75,7 +75,7 @@ class EmailVerifyAPIView(APIView):
                 'auth_token': token.key,
             }).data
             data_to_response['detail'] = _('Email was verified.')
-            return Response(data_to_response, status=status.HTTP_200_OK,)
+            return Response(data_to_response, status=status.HTTP_200_OK, )
         return Response({
             'detail': _('Email was not verified.')
         },
@@ -92,7 +92,7 @@ class SignInAPIView(APIView):
 
     @swagger_auto_schema(
         responses={
-            '200': 'Successful authenticated.',
+            '200': 'Successfully authenticated.',
             '400': 'Bad request.'
         },
         request_body=SignInSerializer,

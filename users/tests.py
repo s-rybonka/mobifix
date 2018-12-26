@@ -1,11 +1,8 @@
-
-
 from django.shortcuts import reverse
-
 from rest_framework.authtoken.models import Token
 
-from users.factories import UserFactory
 from users.factories import ProfileFactory
+from users.factories import UserFactory
 from utils.tests import APITestCase
 
 
@@ -24,7 +21,6 @@ class UserAPITestCase(APITestCase):
         data = self.parse_response(response.content)
 
         self.assertEqual(response.status_code, 200)
-
         self.assertEqual(self.profile.first_name, data['first_name'])
         self.assertEqual(self.profile.last_name, data['last_name'])
         self.assertEqual(self.profile.address, data['address'])
@@ -39,14 +35,13 @@ class UserAPITestCase(APITestCase):
             'last_name': 'New Last Name',
             'address': 'New test address',
         }
+
         response = self.client.patch(self.profile_url, data=partial_post_data)
 
         self.assertEqual(response.status_code, 200)
-
         data = self.parse_response(response.content)
 
         self.employee.profile.refresh_from_db()
-
         self.assertEqual(
             self.employee.profile.first_name,
             data['first_name']

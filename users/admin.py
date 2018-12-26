@@ -3,15 +3,15 @@
 from __future__ import absolute_import, unicode_literals
 
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from users.models import User
-from users.models import EmailConfirmation
-from users.models import Profile
 from users.forms import UserChangeForm
 from users.forms import UserCreationForm
+from users.models import EmailConfirmation
+from users.models import Profile
+from users.models import User
 
 admin.site.unregister(Group)
 
@@ -55,5 +55,5 @@ class AdminEmailConfirmation(admin.ModelAdmin):
 
 @admin.register(Profile)
 class AdminProfile(admin.ModelAdmin):
-    list_display = ('user','first_name', 'last_name', 'phone')
+    list_display = ('user', 'first_name', 'last_name', 'phone')
     search_fields = ('first_name', 'last_name',)

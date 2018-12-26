@@ -73,14 +73,12 @@ class ServiceAPITestCase(APITestCase):
             token_key=self.employee.auth_token.key,
         )
         order = OrderFactory()
-
         partial_post_data = {
             'title': 'New Order Title',
             'number': 'DFGHR',
             'service': ServiceFactory().id,
             'status': Order.STATUSES.PENDING,
         }
-
         order_detail_url = reverse(
             'api:services:orders-detail', kwargs={
                 'pk': order.pk
@@ -112,9 +110,7 @@ class ServiceAPITestCase(APITestCase):
             'customer_phone': '+380978145561',
             'phone_verification_code': 'XXXXX',
         }
-
         order = OrderFactory(**order_data)
-
         order_confirm_url = reverse(
             'api:services:orders-confirm-order',
             kwargs={
@@ -131,7 +127,6 @@ class ServiceAPITestCase(APITestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-
         order.refresh_from_db()
         data = self.parse_response(response.content)
 
@@ -143,7 +138,6 @@ class ServiceAPITestCase(APITestCase):
         order = OrderFactory(number='WWWXX', status=Order.STATUSES.COMPLETED)
 
         public_order_detail_url = reverse('api:services:order_public_detail')
-
         query_params = {
             'order_number': 'WWWXX'
         }
@@ -151,7 +145,6 @@ class ServiceAPITestCase(APITestCase):
         response = self.client.get(public_order_detail_url, data=query_params)
 
         self.assertEqual(response.status_code, 200)
-
         data = self.parse_response(response.content)
 
         self.assertEqual(order.title, data['title'])

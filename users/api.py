@@ -1,9 +1,10 @@
-from rest_framework.generics import UpdateAPIView
-from rest_framework.generics import RetrieveAPIView
-from users.serializers import ProfileModelSerializer
-from rest_framework.permissions import IsAuthenticated
-from users.models import Profile
 from django.shortcuts import get_object_or_404
+from rest_framework.generics import RetrieveAPIView
+from rest_framework.generics import UpdateAPIView
+from rest_framework.permissions import IsAuthenticated
+
+from users.models import Profile
+from users.serializers import ProfileModelSerializer
 
 
 class ProfileRetrieveUpdateAPIView(UpdateAPIView, RetrieveAPIView):

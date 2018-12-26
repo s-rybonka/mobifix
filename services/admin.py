@@ -1,7 +1,8 @@
 from django.contrib import admin
-from services.models import Service
-from services.models import Order
 from django.utils.translation import gettext_lazy as _
+
+from services.models import Order
+from services.models import Service
 
 
 @admin.register(Service)

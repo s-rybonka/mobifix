@@ -7,7 +7,6 @@ from users.models import Profile
 from users.models import User
 from users.models import EmailConfirmation
 
-
 faker = Faker()
 
 
@@ -21,7 +20,6 @@ class UserFactory(DjangoModelFactory):
 
 
 class EmailConfirmationFactory(DjangoModelFactory):
-
     class Meta:
         model = EmailConfirmation
 
@@ -33,6 +31,7 @@ class EmailConfirmationFactory(DjangoModelFactory):
 class ProfileFactory(DjangoModelFactory):
     class Meta:
         model = Profile
+
     user = factory.SubFactory(UserFactory)
     first_name = faker.name()
     last_name = faker.name()

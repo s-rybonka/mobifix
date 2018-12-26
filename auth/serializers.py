@@ -1,15 +1,16 @@
+from django.conf import settings
 from django.contrib.auth import authenticate
+from django.core.mail import send_mail
 from django.utils.crypto import get_random_string
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.exceptions import ValidationError
+
 from users.models import EmailConfirmation
-from users.models import User
-from django.core.mail import send_mail
-from django.conf import settings
 from users.models import Profile
+from users.models import User
 
 
 class SignUpSerializer(serializers.Serializer):
@@ -89,7 +90,7 @@ class SignInSerializer(serializers.Serializer):
                 Profile.objects.get_or_create(user=user)
             else:
                 raise PermissionDenied(
-                    _('E-mail is not verified.'),
+                    _('E-mail was not verified.'),
                 )
         else:
             raise ValidationError(_('Unable to log in with provided credentials.'))
@@ -178,4 +179,3 @@ class PasswordChangeSerializer(serializers.Serializer):
         new_password = self.validated_data.get('password1')
         user.set_password(new_password)
         user.save()
-
