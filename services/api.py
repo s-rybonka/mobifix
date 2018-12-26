@@ -23,6 +23,12 @@ class ServiceListAPIView(ListAPIView):
     permission_classes = (AllowAny,)
 
 
+class ServiceDetailAPIView(RetrieveAPIView):
+    serializer_class = ServiceModelSerializer
+    queryset = Service.objects.order_by('-id')
+    permission_classes = (AllowAny,)
+
+
 class OrderModelViewSet(ModelViewSet):
     serializer_class = OrderModelSerializer
     queryset = Order.objects.order_by('-id')
